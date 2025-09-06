@@ -9,8 +9,6 @@
   let languages = 
   [
       { name : "Python"},
-      { name : "Rust"},
-      { name : "Go"}
   ];
   let modelsPython = [
       { name: "Digit Model", file: "/models/model.npz" },
