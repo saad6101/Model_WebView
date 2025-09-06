@@ -25,8 +25,6 @@
   let model = 
   [
     { elements : modelsPython, loadFunction : loadModelPython, initalFunction : initializePython, loaded : false},
-    { elements : modelsRust,   loadFunction : loadModelPython, initalFunction : initializePython, loaded : false},
-    { elements : modelGo,      loadFunction : loadModelPython, initalFunction : initializePython, loaded : false}
   ]
   let selectedModelIndex = $state(0);
   let selectedLanguageIndex = $state(0);
