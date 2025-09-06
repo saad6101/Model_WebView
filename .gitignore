@@ -1,4 +1,6 @@
 node_modules
+models/emnist-balanced-train.csv
+models/emnist-digits-train.csv
 
 # Output
 .output
