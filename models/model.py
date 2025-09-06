@@ -4,12 +4,12 @@ import pandas as pd
 import time
 INPUT_NODES = 784  
 OUTPUT_NODES = 10
-data = pd.read_csv('emnist-digits-train.csv')
-gfh =  60
+data = pd.read_csv('train.csv')
+gfh =  100
 dfh  = 100
-epochs = 300
+epochs = 50
 learning_rate = 0.05
-batch_size = 2048
+batch_size =   32
 
 # %%
 data = np.array(data)
@@ -110,6 +110,8 @@ def gradient_descent(X, Y, alpha, iterations, batch_size=2048):
 
         if i % 10 == 0:
             print(f"Iteration {i}")
+        if i % 100 == 0:
+            np.savez(f"mnist_model_epoch_{i}.npz", W1=W1, b1=b1, W2=W2, b2=b2, W3=W3, b3=b3)
 
     return W1, b1, W2, b2, W3, b3
 

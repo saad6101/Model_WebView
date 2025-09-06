@@ -3,13 +3,20 @@
   let animation = $state(false)
   let { pixels = $bindable(), result = $bindable(), modelReady = $bindable() }: { pixels: number[][], result : any, modelReady : boolean  } = $props();
   
-
   function togglePixel(row: number, col: number) {
-    if (!modelReady) {return}
+    if (!modelReady) { return; }
+
+    const radius = 1; 
+
     pixels = pixels.map((r, ri) =>
-      ri === row
-        ? r.map((c, ci) => (ci === col ? 255 : c))
-        : r
+      r.map((c, ci) => {
+        const distance = Math.sqrt((ri - row) ** 2 + (ci - col) ** 2);
+        if (distance <= radius) {
+          const intensity = Math.max(0, 255 - (distance / radius) * 255);
+          return Math.max(c, intensity); 
+        }
+        return c;
+      })
     );
   }
 
@@ -39,7 +46,6 @@
     if (!modelReady) {return}
     isDrawing = false;
   }
-  
 </script>
 
 <style>
@@ -55,6 +61,11 @@
     padding: 0;
     border: 1px solid #444;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
   }
 </style>
 
@@ -67,11 +78,12 @@
     {#each row as value, colIndex}
         <div
         class="pixel"
-        style="background-color: {value === 255 ? 'white' : 'black'}"
+        style="background-color: rgb({255 - value}, {255 - value}, {255 - value})"
         onmousedown={() => handleDown(rowIndex, colIndex)}
         onmouseenter={() => handleEnter(rowIndex, colIndex)}
       >
-    </div>
+        {value > 0 ? Math.round(value) : ''}
+      </div>
     {/each}
   {/each}
 </div>

@@ -11,8 +11,11 @@
       { name : "Python"},
   ];
   let modelsPython = [
-      { name: "Digit Model", file: "/models/model.npz" },
-      { name: "Digit Model 2", file: "/models//mnist_model.npz" }
+      { name: "Original Model", file: "/models/model.npz" },
+      { name: "Model 2 Mid", file: "/models/mnist_model.npz" },
+      { name: "Emnist Model 3 OverFitting", file: "/models/mnist_model2.npz" },
+      { name: "Emnist Model 4", file: "/models/mnist_model3.npz" },
+      { name: "Mnist 5", file: "/models/mnist_model3.npz" }
   ];
   let modelsRust = [
       { name: "coming_soon", file: "/models/model.npz" },
@@ -32,6 +35,7 @@
     const modelFile = modelsPython[index].file;
     const response = await (await fetch(modelFile)).arrayBuffer();
     pyodide.FS.writeFile("model.npz", new Uint8Array(response));
+
     await pyodide.runPythonAsync(`
       import numpy as np
       params = np.load("model.npz")
@@ -40,10 +44,10 @@
       W3, b3 = params["W3"], params["b3"]
 
       def elu(Z, alpha=1.0):
-          return np.where(Z > 0, Z, alpha * (np.exp(Z) - 1))
+          return np.maximum(0, Z)
 
       def elu_deriv(Z, alpha=1):
-          return np.where(Z > 0, 1, alpha * np.exp(Z))
+          return (Z > 0).astype(float)
 
       def forward_prop(W1, b1, W2, b2, W3, b3, X):
           Z1 = W1.dot(X) + b1
@@ -51,7 +55,7 @@
           Z2 = W2.dot(A1) + b2
           A2 = elu(Z2)
           Z3 = W3.dot(A2) + b3
-          A3 = np.exp(Z3) / np.sum(np.exp(Z3))
+          A3 = np.exp(Z3 - np.max(Z3, axis=0, keepdims=True)) / np.sum(np.exp(Z3 - np.max(Z3, axis=0, keepdims=True)), axis=0, keepdims=True)
           return Z1, A1, Z2, A2, Z3, A3
 
       def get_predictions(A3):
@@ -82,16 +86,21 @@
   ));
 async function predict() {
   const flatPixels = pixels.flat().map(p => p / 255); 
+  console.log("Full flat pixels (normalized):", flatPixels);  // Log the entire array
+  console.log("Pixels shape before flattening:", pixels.length, "x", pixels[0].length);  // Should be 28x28
   if (!pyodide) return;
   await pyodide.globals.set("pixels", flatPixels);
   const pred = await pyodide.runPythonAsync(`
       import numpy as np
       x = np.array(pixels, dtype=np.float32).reshape(784,1)
+      print("Pyodide input shape:", x.shape)
       pred = make_predictions(x)
-      int(pred)  # convert numpy int to Python int
+      print("Pyodide prediction:", pred)
+      int(pred)
   `);
+  console.log("Final prediction:", pred);
   alert("Predicted digit: " + pred);
-  result = pred
+  result = pred;
 }
 </script>
 <h1 class="flex items-center justify-center pt-2 font-bold  text-4xl">   
