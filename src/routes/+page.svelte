@@ -17,10 +17,10 @@
       { name: "Digit Model 2", file: "/models//mnist_model.npz" }
   ];
   let modelsRust = [
-      { name: "coming_soon", file: "" },
+      { name: "coming_soon", file: "/models/model.npz" },
   ];
   let modelGo = [
-      { name: "coming_soon", file: "" },
+      { name: "coming_soon", file: "/models/model.npz" },
   ];
   let model = 
   [
