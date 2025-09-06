@@ -1,0 +1,252 @@
+Run on
+3050 Laptop GPU
+i7-11370H
+16GB RAM
+
+
+
+Python Model 
+MNIST Database - 
+
+
+Below Use CPU + GPU performance added later
+
+Base Run
+--------------------------------
+784 nodes in 0th layer
+10 nodes in 1st layer
+10 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 8040
+Biases - 30
+Interations ~ 800
+Learning Rate - .9 - .6
+Time - 
+Accuracy - 92.8 - 93.5%
+Testing Accuracy - 93.3%
+-----------------------
+Trial Runs
+------------------------
+784 nodes in 0th layer
+15 nodes in 1st layer
+15 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 12,135
+Biases - 40
+Interations = 800
+Learning Rate - .6
+Time - 1m 12s
+Accuracy - 94.7%
+Testing Accuracy - 93.7%
+## Slight Overfitting
+----------------------------------
+Run 2
+-------------------------------
+784 nodes in 0th layer
+1 nodes in 1st layer
+1 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 795
+Biases - 12
+Interations ~ 800
+Learning Rate - .6
+Time - 28s
+Accuracy - 29%
+Testing Accuracy - 26.9%
+----------------------------------
+Run 3
+-------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+20 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 16280
+Biases - 50
+Interations ~ 800
+Learning Rate - .6
+Time - 2m 20s
+Accuracy - 95.3%
+Testing Accuracy - 94.5%
+
+----------------------------------
+Run 4
+-------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+50 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 16880
+Biases - 80
+Interations ~ 200
+Learning Rate - .6
+Time - 1m 10s
+Accuracy - 91.1%
+Testing Accuracy - 91.6%
+
+
+
+
+GPU
+------------------------
+Run 1
+--------------------------
+784 nodes in 0th layer
+30 nodes in 1st layer
+30 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 24720
+Biases - 70
+Interations ~ 800
+Learning Rate - .6
+Time - 38.85s
+Accuracy - 95.6%
+Testing Accuracy - 94.5%
+
+--------------------------
+Run 2 
+-----------------------------
+784 nodes in 0th layer
+60 nodes in 1st layer
+60 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 24720
+Biases - 70
+Interations ~ 800
+Learning Rate - .6
+Time - 1m 28.58s
+Accuracy - 97%
+Testing Accuracy - 94%
+
+Overfitting
+
+
+400 Iterations 
+_______________
+43.79s
+94.5% Accuracy
+TEsting Accuracy 92.5%
+----------------------------
+Run 3
+--------------------------
+
+784 nodes in 0th layer
+10 nodes in 1st layer
+10 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 8040
+Biases - 30
+Interations ~ 1200
+Learning Rate - .8
+Time - 1m
+Accuracy - 94.3%
+Testing Accuracy - 91.6%
+------------------------------
+Run 4
+------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+200 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 19880
+Biases - 230
+Interations ~ 800
+Learning Rate - .2
+Time - 1m 5.66s
+Accuracy - 94%
+Testing Accuracy - 92.5%
+
+----------------------------------
+Run 5
+----------------------------------------
+784 nodes in 0th layer
+40 nodes in 1st layer
+40 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 33560
+Biases - 90
+Interations ~ 800
+Learning Rate - .4
+Time - 1m 24.98s
+Accuracy - 96%
+Testing Accuracy - 94%
+
+----------------------------------
+Run 6
+----------------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+20 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 16280
+Biases - 50
+Interations ~ 400
+Learning Rate - .2
+Time - 17s
+Accuracy - 89%
+Testing Accuracy - 89.7%
+
+
+To Note Random Noise Added from the above tuned to 0.01
+-------------------------------------------------------
+----------------------------------
+Run 7
+----------------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+20 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 16280
+Biases - 50
+Interations ~ 400
+Learning Rate - .7
+Time - 16.62s
+Accuracy - 94%
+Testing Accuracy - 93%
+
+
+To Note Random Noise Added from the above tuned to 0.01
+-------------------------------------------------------
+----------------------------------
+Run 8
+----------------------------------------
+784 nodes in 0th layer
+20 nodes in 1st layer
+20 nodes in 2nd layer
+10 output nodes
+Architecture - Softmax, ELU
+
+Weights - 16280
+Biases - 50
+Iterations ~ 800
+Learning Rate - .6
+Time - 33.78s
+Accuracy - 94.7%
+Testing Accuracy - 94%
+
+
+To Note Random Noise Added from the above tuned to 0.02
+-------------------------------------------------------
