@@ -13,3 +13,4 @@ You can use my model file inside the models folder to train a new model for your
 Get your CSV set it in the loader. Configure your output and input neurons. Configure the amount of neurons in the 2 hidden layers by changing dfh and gfh. 
 After that just set a learning rate and batch size or use the default.
 then just run the script and that's your new model. yaay
+This is a demonstration project.
