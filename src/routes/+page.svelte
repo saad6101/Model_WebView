@@ -99,7 +99,7 @@ async function predict() {
 }
 </script>
 <h1 class="flex items-center justify-center pt-2 font-bold  text-4xl">   
-  <select bind:value={selectedLanguageIndex} onchange={() => {model[selectedLanguageIndex].initalFunction();selectedModelIndex = 0 }}>
+  <select bind:value={selectedLanguageIndex} onchange={() => {selectedModelIndex = 0 }}>
     {#each languages as language, i}
       <option class=" text-black text-lg" value={i}>{language.name}</option>
     {/each}
