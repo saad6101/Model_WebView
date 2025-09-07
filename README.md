@@ -1,5 +1,9 @@
 Hey This is the README.
 This is the Web Interface For My Custom AI Model.
+
+https://github.com/user-attachments/assets/fcfb7cf4-2c1c-4f1f-a113-0aec4393519d
+
+
 The AI model is named model.py
 # Model_WebView
 Custom AI Model With Web Interface For EMNIST [Mini-Batching]
@@ -14,3 +18,4 @@ Get your CSV set it in the loader. Configure your output and input neurons. Conf
 After that just set a learning rate and batch size or use the default.
 then just run the script and that's your new model. yaay
 This is a demonstration project.
+[][]
