@@ -3,6 +3,8 @@
   import { loadPyodide } from "pyodide";
   import Canvas from "./canvas.svelte";
   import { Button } from "$lib/components/ui/button/index.js";
+  import { Slider } from "$lib/components/ui/slider/index.js";
+  let value = $state(1.75);
   let modelReady = $state(false)
   let pyodide : any = $state();
   let result : any = $state("")
@@ -12,10 +14,11 @@
   ];
   let modelsPython = [
       { name: "Original Model", file: "/models/model.npz" },
-      { name: "Model 2 Mid", file: "/models/mnist_model.npz" },
-      { name: "Emnist Model 3 OverFitting", file: "/models/mnist_model2.npz" },
-      { name: "Emnist Model 4", file: "/models/mnist_model3.npz" },
-      { name: "Mnist 5", file: "/models/mnist_model3.npz" }
+      { name: "Model 2", file: "/models/mnist_model7.npz" },
+      { name: "Model 3", file: "/models/mnist_model2.npz" },
+      { name: "Model 4", file: "/models/mnist_model3.npz" },
+      { name: "Mnist 5", file: "/models/mnist_model8.npz" },
+      { name: "Mnist 6", file : "/models/mnist_model6.npz"}
   ];
   let modelsRust = [
       { name: "coming_soon", file: "/models/model.npz" },
@@ -110,6 +113,7 @@ async function predict() {
     {/each}
   </select> 
 </h1>
+
 <div class="flex justify-center mb-5">
   <select bind:value={selectedModelIndex} onchange={() => model[selectedLanguageIndex].loadFunction(selectedModelIndex)}>
     {#each model[selectedLanguageIndex].elements as models, i}
@@ -117,8 +121,11 @@ async function predict() {
     {/each}
   </select>
 </div>
-<div class="flex items-center justify-center pr-108">Result = {result}</div>
-<div class="flex items-center justify-center pt-5"><Canvas bind:modelReady = {modelReady} bind:pixels =  {pixels} bind:result = {result}></Canvas></div>
+<div class="flex items-center justify-center pr-108">Result = {result} </div>
+<p class="flex justify-center"> Set your Radius</p>
+<div class="flex items-center justify-center w-full"><Slider type="single" bind:value max={3} step={0.01} class="flex items-center justify-center pt-2 w-full max-w-[30%]" />
+</div>
+<div class="flex items-center justify-center pt-5"><Canvas bind:radius = {value} bind:modelReady = {modelReady} bind:pixels =  {pixels} bind:result = {result}></Canvas></div>
 <div class="flex items-center justify-center pt-3 ">
   <Button disabled={!modelReady} onclick= {predict}>Predict</Button>
 </div>

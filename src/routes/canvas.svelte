@@ -1,13 +1,10 @@
 <script lang="ts">
   let isDrawing = false;
   let animation = $state(false)
-  let { pixels = $bindable(), result = $bindable(), modelReady = $bindable() }: { pixels: number[][], result : any, modelReady : boolean  } = $props();
+  let { pixels = $bindable(), result = $bindable(), modelReady = $bindable(), radius = $bindable() }: { pixels: number[][], result : any, modelReady : boolean, radius : number  } = $props();
   
   function togglePixel(row: number, col: number) {
     if (!modelReady) { return; }
-
-    const radius = 1; 
-
     pixels = pixels.map((r, ri) =>
       r.map((c, ci) => {
         const distance = Math.sqrt((ri - row) ** 2 + (ci - col) ** 2);
@@ -46,6 +43,7 @@
     if (!modelReady) {return}
     isDrawing = false;
   }
+
 </script>
 
 <style>
@@ -77,8 +75,8 @@
   {#each pixels as row, rowIndex}
     {#each row as value, colIndex}
         <div
-        class="pixel"
-        style="background-color: rgb({255 - value}, {255 - value}, {255 - value})"
+        class="pixel {modelReady ? "" : "cursor-not-allowed"}"
+        style="background-color: rgb({255 - value}, {255 - value}, {255 - value}) "
         onmousedown={() => handleDown(rowIndex, colIndex)}
         onmouseenter={() => handleEnter(rowIndex, colIndex)}
       >
@@ -98,5 +96,6 @@
     alt="refresh" 
     width= "30" height="30" 
     class="transition-transform duration-500 {animation ? 'animate-spin' : ''}"/>
+    <div class="flex items-center justify-center"><a href="/" download="model.py"><img class="flex" width=30 height="30" src="download.png" alt="download"></a></div>
   </button>
 </div>

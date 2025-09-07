@@ -4,12 +4,12 @@ import pandas as pd
 import time
 INPUT_NODES = 784  
 OUTPUT_NODES = 10
-data = pd.read_csv('train.csv')
-gfh =  100
-dfh  = 100
-epochs = 50
-learning_rate = 0.05
-batch_size =   32
+data = pd.read_csv('emnist-digits-train.csv')
+gfh =  784
+dfh  = 784
+epochs = 5
+learning_rate = 0.01
+batch_size =  32
 
 # %%
 data = np.array(data)
